@@ -186,4 +186,5 @@ You are required to submit BOTH of the following for review:
 Credits:
 
 decimal data type in table: https://www.mysqltutorial.org/mysql-decimal/#:~:text=MySQL%20uses%20binary%20format%20to,9%20digits%20into%204%20bytes.&text=For%20example%2C%20DECIMAL(19%2C,fractional%20part%20requires%204%20bytes
-multiple foreign keys https://www.geeksforgeeks.org/how-to-create-a-table-with-multiple-foreign-keys-in-sql/
+foreign key debugging https://www.w3schools.com/sql/sql_foreignkey.asp
+online example https://github.com/samrogers15/MySQL-employee-tracker/blob/main/server.js
