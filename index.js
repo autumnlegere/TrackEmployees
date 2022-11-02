@@ -1,7 +1,9 @@
+// require dependencies
 const inquirer = require('inquirer');
 const mysql = require('mysql2');
 const cTable = require('console.table');
 
+// connection to mysql
 const db = mysql.createConnection(
     {
         user: 'root',
@@ -11,6 +13,7 @@ const db = mysql.createConnection(
     console.log(`Connected to company_db.`)
 );
 
+// question for when user starts application
 const startMenu = [
     {
         type: 'list',
@@ -28,6 +31,7 @@ const startMenu = [
     },
 ]
 
+// question for when user selects to add a department
 const addDepartment = [
     {
         type: 'input',
@@ -36,6 +40,7 @@ const addDepartment = [
     },
 ]
 
+// function called upon application startup; uses inquirer to display menu question and then calls respective functions for each response option
 function start() {
     inquirer.prompt(startMenu).then((response) => {
         if (response.mainMenu === "View all departments") {
@@ -56,6 +61,7 @@ function start() {
     });
 };
 
+// displays all content in department table, then calls start function again for more options
 allDepts = () => {
     db.query(`SELECT * FROM department;`, (err, result) => {
         if (err) throw err;
@@ -64,6 +70,7 @@ allDepts = () => {
     });
 };
 
+// displays all roles wtih their corresponding id's department names, and salaries, then calls start function again for more options
 allRoles = () => {
     db.query(`SELECT role.title, role.id, department.name, department.id, role.salary FROM role JOIN department ON role.department_id = department.id;`, (err, result) => {
         if (err) throw err;
@@ -72,6 +79,7 @@ allRoles = () => {
     });
 };
 
+// displays employee name, role, department, salary, and manager, then calls start function again for more options
 allEmps = () => {
     db.query(`SELECT a.id, a.first_name, a.last_name, role.title, role.id, department.name, department.id, role.salary, CONCAT(b.first_name, ' ', b.last_name) manager FROM employee a JOIN employee b ON a.manager_id = b.id JOIN role ON a.role_id = role.id JOIN department ON role.department_id = department.id;`, (err, result) => {
         if (err) throw err;
@@ -80,6 +88,7 @@ allEmps = () => {
     });
 };
 
+// displays question to add new department and inserts response in to department table, then calls start function again for more options
 addDept = () => {
     inquirer.prompt(addDepartment).then((response) => {
         console.log(response.newDepartment);
@@ -91,9 +100,11 @@ addDept = () => {
     });
 };
 
+// displays questions to add new role and inserts responses in to role table, then calls start function again for more options
 addNewRoles = () => {
     db.query(`SELECT * FROM department;`, (err, result) => {
         if (err) throw err;
+        // variable used to display all departments; used in prompt question below
         let departmentList = result.map(department => ({ name: department.name, value: department.id }));
         inquirer.prompt([
             {
@@ -123,12 +134,15 @@ addNewRoles = () => {
 
 };
 
+// displays questions to add new employee and inserts responses in to employee table, then calls start function again for more options
 addEmp = () => {
     db.query(`SELECT * FROM role;`, (err, result) => {
         if (err) throw err;
+        // variable used to display all roles; used in prompt question below
         let roleList = result.map(role => ({ name: role.title, value: role.id }));
         db.query(`SELECT * FROM employee;`, (err, result) => {
             if (err) throw err;
+            // variable used to display all employees; used in prompt question below
             let employeeList = result.map(employee => ({ name: employee.first_name + ' ' + employee.last_name, value: employee.id }));
             inquirer.prompt([
                 {
@@ -165,18 +179,21 @@ addEmp = () => {
 
 };
 
+// displays questions to update an employees role in employee table, then calls start function again for more options
 updateRole = () => {
     db.query(`SELECT * FROM role;`, (err, result) => {
         if (err) throw err;
+        // variable used to display all roles; used in prompt question below
         let roleList = result.map(role => ({ name: role.title, value: role.id }));
         db.query(`SELECT * FROM employee;`, (err, result) => {
             if (err) throw err;
+            // variable used to display all employees; used in prompt question below
             let employeeList = result.map(employee => ({ name: employee.first_name + ' ' + employee.last_name, value: employee.id }));
             inquirer.prompt([
                 {
                     type: 'list',
                     name: 'selectEmployee',
-                    message: "Select an employee to update.",
+                    message: "Select the employee whose role you would like to update.",
                     choices: employeeList,
                 },
                 {
@@ -197,4 +214,5 @@ updateRole = () => {
     })
 };
 
+// calls function upon starting the application
 start();
