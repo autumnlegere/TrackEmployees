@@ -27,6 +27,7 @@ const startMenu = [
             "Add a role",
             "Add an employee",
             "Update an employee role",
+            "Exit",
         ]
     },
 ]
@@ -57,7 +58,10 @@ function start() {
             addEmp();
         } else if (response.mainMenu === "Update an employee role") {
             updateRole();
-        };
+        } else {
+            db.end();
+            console.log('Thank you.');
+        }
     });
 };
 
