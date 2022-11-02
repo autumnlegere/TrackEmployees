@@ -28,9 +28,9 @@ This is a screenshot of the project.
  
 ## Credits
  
-- Information on decimal data type in table <br>
-    - [www.mysqltutorial.org](https://www.mysqltutorial.org/mysql-decimal/#:~:text=MySQL%20uses%20binary%20format%20to,9%20digits%20into%204%20bytes.&text=For%20example%2C%20DECIMAL(19%2C,fractional%20part%20requires%204%20bytes)
 - Code for foreign key syntax <br>
     - [www.w3schools.com](https://www.w3schools.com/sql/sql_foreignkey.asp)
 - Code for queries, mysql syntax in index.js, linking responses to database tables, mapping table information and inserting it into inquirer prompts, db.end(), and using console.table properly <br>
     - [github.com/samrogers15](https://github.com/samrogers15/MySQL-employee-tracker/blob/main/server.js)
+- Code for decimal data type in table <br>
+    - [www.mysqltutorial.org](https://www.mysqltutorial.org/mysql-decimal/#:~:text=MySQL%20uses%20binary%20format%20to,9%20digits%20into%204%20bytes.&text=For%20example%2C%20DECIMAL(19%2C,fractional%20part%20requires%204%20bytes)
