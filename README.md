@@ -17,13 +17,13 @@ To use this project, you will need to do the following:
  
 ## Link to Video Demonstration
  
-[Title Here](https://autumnlegere.github.io/ repo name here)
+[Video Demo](https://drive.google.com/file/d/1Rq-3eTCCSPh1OVKH0waXJi_Ap_-6H_mG/view?usp=sharing)
  
  
 ## Screenshot
  
 This is a screenshot of the project.
-![screenshot](Screenshot.jpg)
+![screenshot](/Images/Screenshot.jpg)
  
  
 ## Credits
