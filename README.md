@@ -23,7 +23,7 @@ To use this project, you will need to do the following:
 ## Screenshot
  
 This is a screenshot of the project.
-![screenshot](screenshot.jpg)
+![screenshot](Screenshot.jpg)
  
  
 ## Credits
